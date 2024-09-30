@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 생성</title>
+    <script>
+        // 1. 직접 객체 만들기
+        function register() { this.nStudent++; }
+        function unregister() { this.nStudent--; }
+        function getStudentCount() { return this.nStudent; }
+
+        let class1 = new Object();
+        class1.korName = "웹프로그래밍";
+        class1.engName = "Web Programming";
+        class1.classCode = "V024003";
+        class1.nStudent = 0;
+        class1.register = register;
+        class1.unregister = unregister;
+        class1.getStudentCount = getStudentCount;
+
+        // 2. 리터럴 표기법
+        let class2 = {
+            korName: "클라우드컴퓨팅",
+            engName: "Cloud Computing",
+            classCode: "V024003",
+            nStudent: 0,
+            register: function () { this.nStudent++; },
+            unregister: function () { this.nStudent--; },
+            getStudentCount: function () { return this.nStudent; }
+        };
+
+        // 3. 프로토타입 기반 객체 생성
+        function Course(korName, engName, classCode, nStudent) {
+            this.korName = korName;
+            this.engName = engName;
+            this.classCode = classCode;
+            this.nStudent = nStudent;
+
+            this.register = function () { this.nStudent++; };
+            this.unregister = function () { this.nStudent--; };
+            this.getStudentCount = function () { return this.nStudent; };
+        }
+
+        let class3 = new Course("프로그래밍언어론", "Programming Languages", "V024003", 0);
+    </script>
+</head>
+<body>
+    <h1>1. 직접 객체 만들기</h1>
+    <script>
+        document.write("교과목 이름 = " + class1.korName + "<br>");
+        document.write("교과목 영문 이름 = " + class1.engName + "<br>");
+        document.write("등록 학생 수 = " + class1.getStudentCount() + "<br>");
+        class1.register();
+        document.write("after register, 등록 학생 수 = " + class1.getStudentCount() + "<br>");
+    </script>
+    <hr>
+
+    <h1>2. 리터럴 표기법</h1>
+    <script>
+        document.write("교과목 이름 = " + class2.korName + "<br>");
+        document.write("교과목 영문 이름 = " + class2.engName + "<br>");
+        document.write("등록 학생 수 = " + class2.getStudentCount() + "<br>");
+        class2.register();
+        document.write("after register, 등록 학생 수 = " + class2.getStudentCount() + "<br>");
+    </script>
+    <hr>
+
+    <h1>3. Prototype</h1>
+    <script>
+        document.write("교과목 이름 = " + class3.korName + "<br>");
+        document.write("교과목 영문 이름 = " + class3.engName + "<br>");
+        document.write("등록 학생 수 = " + class3.getStudentCount() + "<br>");
+        class3.register();
+        document.write("after register, 등록 학생 수 = " + class3.getStudentCount() + "<br>");
+    </script>
+</body>
+</html>
