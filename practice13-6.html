@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week10</title>
+</head>
+<body>
+    <h3>곱셈하기</h3>
+    <hr>
+    <input id="from" type="text" size="10"> x 
+    <input id="to" type="text" size="10">
+    <button type="button" id="multiply" onclick="send()">곱하기</button>
+    <input id="mul" type="text" size="10">
+    <script>
+    let mulWorker = new Worker("mul.js");
+
+    function send() {
+        let parameters = {
+        from: document.getElementById("from").value,
+        to: document.getElementById("to").value
+        };
+        mulWorker.postMessage(parameters);
+    }
+    mulWorker.onmessage = function (e) {
+    document.getElementById("mul").value = e.data;
+    }
+    </script>
+</body>
+</html>
