@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>일기 쓰기</title>
+  <script>
+    function saveDiary() {
+      const today = new Date();
+      const dateString = `${today.getFullYear()}.${(today.getMonth() + 1).toString().padStart(2, "0")}.${today.getDate().toString().padStart(2, "0")}`;
+
+      const diaryContent = document.getElementById("diaryContent").value.trim();
+
+      if (!diaryContent) {
+        alert("일기 내용을 입력해주세요.");
+        return;
+      }
+
+      const diaries = JSON.parse(localStorage.getItem("diaries")) || [];
+      diaries.push({ date: dateString, content: diaryContent });
+      localStorage.setItem("diaries", JSON.stringify(diaries));
+
+      alert("일기가 저장되었습니다.");
+      document.getElementById("diaryContent").value = "";
+    }
+
+    function openViewPage() {
+      window.open("week9-p2(veiw).html", "_blank");
+    }
+  </script>
+</head>
+<body>
+  <h3>일기 쓰기</h3>
+  <hr>
+  <p>오늘: <span id="todayDate">
+    <script>
+      const today = new Date();
+      document.getElementById("todayDate").innerText = `${today.getFullYear()}.${(today.getMonth() + 1).toString().padStart(2, "0")}.${today.getDate().toString().padStart(2, "0")}`;
+    </script>
+  </span></p>
+  <textarea id="diaryContent" rows="10" cols="50" placeholder="오늘의 일기를 작성하세요."></textarea><br>
+  <button onclick="saveDiary()">저장</button>
+  <button onclick="openViewPage()">보기</button>
+</body>
+</html>

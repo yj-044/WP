@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일기 보기</title>
+<style>
+    .diary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .diary-date {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .diary-content {
+        flex: 1;
+    }
+</style>
+<script>
+    function loadDiaries() {
+    const diaries = JSON.parse(localStorage.getItem("diaries")) || [];
+
+    if (diaries.length === 0) {
+        document.getElementById("diaryList").innerHTML = "<p>저장된 일기가 없습니다.</p>";
+        return;
+    }
+
+    const diaryList = diaries.map((diary, index) => `
+        <div class="diary-item">
+            <span class="diary-date">${index + 1}. ${diary.date}</span>
+            <span class="diary-content">${diary.content}</span>
+        </div>
+        `).join("");
+
+    document.getElementById("diaryList").innerHTML = diaryList;
+    }
+</script>
+</head>
+<body onload="loadDiaries()">
+    <h3>일기 보기</h3>
+    <hr>
+    <div id="diaryList"></div>
+</body>
+</html>
