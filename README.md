@@ -61,8 +61,8 @@
 - 백틱, `for of`, `forEach()`, 화살표 함수, 콜백 함수 활용 학습
 - Node.js 설치 및 JS 파일 디버깅 방법 학습  
   - **dg.js**: 스코프 실습  
-  - **back.js**: 백틱(`backtick`) 실습  
-  - **forEach.js**: `forEach()` 실습  
+  - **back.js**: 백틱 실습  
+  - **forEach.js**: forEach() 실습  
 
 ### 12주차
 - 스코프, 클로저, 커링 등에 대해 공부하고 함수형 프로그래밍 실습  
